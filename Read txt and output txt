@@ -1,0 +1,26 @@
+const fs=require("fs")
+
+let target = fs.readFileSync("midterm.txt","utf8").trim()
+// cover all the \n\n
+let changeline = target.replace(/\n\n/g, "#")
+//console.log(changeline)
+// delete all the \n
+let nochangeline = changeline.replace(/\n/g, " ")
+//console.log(nochangeline)
+// recover change line
+let list = nochangeline.split("#")
+//console.log(list)
+
+let newlist = []
+
+for (i=1; i< list.length; i++)
+{
+    newlist[i] = list[i].replace(":", "^")    
+    
+}
+
+newstring = newlist.join("\n")
+
+fs.writeFile("midtermresult.txt", newstring, (err)=>{console.log(err)})
+console.log("Finish")
+
